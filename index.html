@@ -272,7 +272,7 @@
             </div>
             
             <!-- Playlist 4: Late Night Drive Songs -->
-            <div class="playlist-card bg-white rounded-xl overflow-hidden">
+            <div class="playlist-card bg-white rounded-xl overflow-hidden" id="latenight">
                 <div class="relative overflow-hidden group">
                     <a target="_blank" href="https://open.spotify.com/playlist/0AAV4BhH1a73FNNExGumgn" rel="noopener noreferrer">
                         <img src="underrated-late-night-playlist.jpg" alt="underrated late night drive songs" class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105">
@@ -296,7 +296,7 @@
             </div>
             
             <!-- Playlist 5: R&B -->
-            <div class="playlist-card bg-white rounded-xl overflow-hidden">
+            <div class="playlist-card bg-white rounded-xl overflow-hidden" id="indie">
                 <div class="relative overflow-hidden group">
                     <a target="_blank" href="https://open.spotify.com/playlist/5PRDXQRM0paJzHiKdH7dH0" rel="noopener noreferrer">
                         <img src="underrated-r&amp;b-playlist.jpg" alt="underrated indie R&amp;B" class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105">
@@ -320,7 +320,7 @@
             </div>
             
             <!-- Playlist 6: Sad Songs -->
-            <div class="playlist-card bg-white rounded-xl overflow-hidden">
+            <div class="playlist-card bg-white rounded-xl overflow-hidden" id="sad">
                 <div class="relative overflow-hidden group">
                     <a target="_blank" href="https://open.spotify.com/playlist/5G8xtA60qu7e3p7X0mFe6W" rel="noopener noreferrer">
                         <img src="underrated-sad-playlist.jpg" alt="underrated sad songs for broken hearts" class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105">
@@ -349,7 +349,7 @@
         <div class="bg-white rounded-xl shadow-md overflow-hidden mb-16">
             <div class="divide-y">
                 <!-- Playlist Item 1 -->
-                <div class="hover:bg-gray-50 transition-colors">
+                <div class="hover:bg-gray-50 transition-colors" id="hot">
                     <div class="flex items-center p-4">
                         <div class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
                             <img src="underrated-dark-feminine-playlist.jpg" alt="underrated songs for looking hot / walking the runway" class="w-full h-full object-cover rounded-lg">
@@ -371,7 +371,7 @@
                 </div>
                 
                 <!-- Playlist Item 2 -->
-                <div class="hover:bg-gray-50 transition-colors">
+                <div class="hover:bg-gray-50 transition-colors" id="itgirl">
                     <div class="flex items-center p-4">
                         <div class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
                             <img src="underrated-girlboss-playlist.jpg" alt="underrated songs for girl bosses" class="w-full h-full object-cover rounded-lg">
@@ -393,7 +393,7 @@
                 </div>
                 
                 <!-- Playlist Item 3 -->
-                <div class="hover:bg-gray-50 transition-colors">
+                <div class="hover:bg-gray-50 transition-colors" id="summer">
                     <div class="flex items-center p-4">
                         <div class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
                             <img src="underrated-summer-playlist.jpg" alt="underrated summer songs" class="w-full h-full object-cover rounded-lg">
@@ -415,7 +415,7 @@
                 </div>
                 
                 <!-- Playlist Item 4 -->
-                <div class="hover:bg-gray-50 transition-colors">
+                <div class="hover:bg-gray-50 transition-colors" id="toxic">
                     <div class="flex items-center p-4">
                         <div class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
                             <img src="underrated-toxic-songs-playlist.jpg" alt="underrated toxic songs" class="w-full h-full object-cover rounded-lg">
@@ -459,7 +459,7 @@
                 </div>
                 
                 <!-- Playlist Item 6 -->
-                <div class="hover:bg-gray-50 transition-colors">
+                <div class="hover:bg-gray-50 transition-colors" id="weeknd">
                     <div class="flex items-center p-4">
                         <div class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
                             <img src="underrated-weeknd-playlist.jpg" alt="the weeknd underground songs" class="w-full h-full object-cover rounded-lg">
@@ -481,7 +481,7 @@
                 </div>
                 
                 <!-- Playlist Item 7 -->
-                <div class="hover:bg-gray-50 transition-colors">
+                <div class="hover:bg-gray-50 transition-colors" id="winter">
                     <div class="flex items-center p-4">
                         <div class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
                             <img src="underrated-winter-blues-playlist.jpg" alt="underrated songs for winter blues" class="w-full h-full object-cover rounded-lg">
@@ -576,5 +576,44 @@
     });
 </script>
 
+    
+<script>
+// Function to highlight div based on URL anchor
+function highlightDivFromAnchor() {
+  // Get the anchor from the URL (without the # symbol)
+  const anchor = window.location.hash.substring(1);
+  
+  // If there's an anchor in the URL
+  if (anchor) {
+    // Find the element with matching ID
+    const targetElement = document.getElementById(anchor);
+    
+    // If the element exists
+    if (targetElement) {
+      // Save the original border style to restore it later
+      const originalBorder = targetElement.style.border;
+      
+      // Add a black 1px border
+      targetElement.style.border = '2px solid black';
+      
+      // Scroll to the element (optional)
+      targetElement.scrollIntoView();
+      
+      // Remove the border after 3 seconds (3000 milliseconds)
+      setTimeout(() => {
+        targetElement.style.border = originalBorder;
+      }, 5000);
+    }
+  }
+}
+
+// Run the function when the page loads
+document.addEventListener('DOMContentLoaded', highlightDivFromAnchor);
+
+// Also run the function when the hash changes (if user navigates to a different anchor)
+window.addEventListener('hashchange', highlightDivFromAnchor);
+</script>
+
+    
 </body>
 </html>
