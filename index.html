@@ -1,636 +1,1100 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Songs Under the Radar - Discover Underground &amp; Indie Artists</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Discover underground &amp; indie artists every week with Songs Under the Radar. Explore our curated playlists of hidden musical gems.">
-    <meta name="keywords" content="underground music, indie artists, music discovery, playlists, Songs Under the Radar">
-    <meta name="author" content="Songs Under the Radar">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Songs Under the Radar - Discover Underground &amp; Indie Artists">
-    <meta property="og:description" content="Explore curated playlists of underground and indie artists. New discoveries every week!">
-    <meta property="og:image" content="https://example.com/songs-under-the-radar-og-image.jpg">
-    <meta property="og:url" content="https://example.com/songs-under-the-radar">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Songs Under the Radar - Discover Underground &amp; Indie Artists">
-    <meta name="twitter:description" content="Explore curated playlists of underground and indie artists. New discoveries every week!">
-    <meta name="twitter:image" content="https://example.com/songs-under-the-radar-twitter-image.jpg">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-        
-        :root {
-            --primary-color: #000000;
-            --secondary-color: #6B7280;
-            --accent-color: #10B981;
-            --dark-bg: #000000;
-            --light-bg: #ffffff;
-            --card-bg: #ffffff;
-            --text-primary: #000000;
-            --text-secondary: #6B7280;
-            --border-color: #E5E7EB;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--light-bg);
-            color: var(--text-primary);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
-        .btn-spotify {
-            background-color: #1DB954;
-            color: white;
-            transition: all 0.2s ease;
-            border: 1px solid #1DB954;
-        }
-        
-        .btn-spotify:hover {
-            background-color: #1AA34A;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(29, 185, 84, 0.3);
-        }
-        
-        .btn-apple {
-            background-color: #FB5B5B;
-            color: white;
-            transition: all 0.2s ease;
-            border: 1px solid #FB5B5B;
-        }
-        
-        .btn-apple:hover {
-            background-color: #E54B4B;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(251, 91, 91, 0.3);
-        }
-        
-        .playlist-card {
-            transition: all 0.2s ease;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            background-color: var(--card-bg);
-        }
-        
-        .playlist-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-        
-        .playlist-img {
-            aspect-ratio: 1;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        
-        .btn {
-            font-weight: 500;
-            font-size: 0.875rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 6px;
-            padding: 0.5rem 1rem;
-            transition: all 0.2s;
-        }
-        
-        .social-links a {
-            transition: all 0.2s;
-        }
-        
-        .social-links a:hover {
-            opacity: 0.8;
-            transform: translateY(-2px);
-        }
-        
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
-        }
-        
-        .nav-container {
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.95);
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        /* Custom animation for hover effects */
-        @keyframes gentle-pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .pulse-on-hover:hover {
-            animation: gentle-pulse 1s infinite;
-        }
-    </style>
-    <link rel="icon" type="image/jpeg" href="songs-under-the-radar.jpg">
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Songs Under the Radar",
-      "url": "https://example.com/songs-under-the-radar",
-      "logo": "https://example.com/songs-under-the-radar-logo.jpg",
-      "description": "Discover underground & indie artists every week with Songs Under the Radar. Explore our curated playlists of hidden musical gems.",
-      "sameAs": [
-        "https://www.instagram.com/songsundertheradar",
-        "https://www.tiktok.com/@songsundertheradar",
-        "https://www.youtube.com/@songsundertheradar"
-      ],
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://example.com/songs-under-the-radar"
-      }
-    }
-    </script>
-<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border-width:0}.relative{position:relative}.sticky{position:sticky}.top-0{top:0px}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-12{margin-bottom:3rem}.mb-2{margin-bottom:0.5rem}.mb-6{margin-bottom:1.5rem}.ml-4{margin-left:1rem}.mt-12{margin-top:3rem}.mt-4{margin-top:1rem}.mb-16{margin-bottom:4rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-8{margin-bottom:2rem}.ml-2{margin-left:0.5rem}.mr-2{margin-right:0.5rem}.mt-2{margin-top:0.5rem}.flex{display:flex}.grid{display:grid}.hidden{display:none}.aspect-square{aspect-ratio:1 / 1}.h-20{height:5rem}.h-24{height:6rem}.h-full{height:100%}.h-10{height:2.5rem}.h-16{height:4rem}.w-20{width:5rem}.w-24{width:6rem}.w-full{width:100%}.w-10{width:2.5rem}.w-16{width:4rem}.flex-1{flex:1 1 0%}.flex-shrink-0{flex-shrink:0}.flex-grow{flex-grow:1}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-6{gap:1.5rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-x-6 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.5rem * var(--tw-space-x-reverse));margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.5rem * var(--tw-space-x-reverse));margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-3 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.75rem * var(--tw-space-x-reverse));margin-left:calc(0.75rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.divide-y > :not([hidden]) ~ :not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse))}.overflow-hidden{overflow:hidden}.rounded{border-radius:0.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border-b{border-bottom-width:1px}.border-r{border-right-width:1px}.border-gray-300{--tw-border-opacity:1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.bg-gray-200{--tw-bg-opacity:1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.bg-gray-800{--tw-bg-opacity:1;background-color:rgb(31 41 55 / var(--tw-bg-opacity, 1))}.bg-green-500{--tw-bg-opacity:1;background-color:rgb(34 197 94 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-gray-900{--tw-bg-opacity:1;background-color:rgb(17 24 39 / var(--tw-bg-opacity, 1))}.object-cover{object-fit:cover}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-4{padding-left:1rem;padding-right:1rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-8{padding-top:2rem;padding-bottom:2rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.text-left{text-align:left}.text-center{text-align:center}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-2xl{font-size:1.5rem;line-height:2rem}.text-5xl{font-size:3rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-green-500{--tw-text-opacity:1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.text-red-500{--tw-text-opacity:1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.text-gray-100{--tw-text-opacity:1;color:rgb(243 244 246 / var(--tw-text-opacity, 1))}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.ring-4{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.ring-2{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.ring-gray-200{--tw-ring-opacity:1;--tw-ring-color:rgb(229 231 235 / var(--tw-ring-opacity, 1))}.ring-gray-700{--tw-ring-opacity:1;--tw-ring-color:rgb(55 65 81 / var(--tw-ring-opacity, 1))}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.hover\:bg-gray-50:hover{--tw-bg-opacity:1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.hover\:bg-green-600:hover{--tw-bg-opacity:1;background-color:rgb(22 163 74 / var(--tw-bg-opacity, 1))}.hover\:bg-gray-200:hover{--tw-bg-opacity:1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.hover\:bg-gray-800:hover{--tw-bg-opacity:1;background-color:rgb(31 41 55 / var(--tw-bg-opacity, 1))}.hover\:text-gray-400:hover{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.hover\:text-black:hover{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.hover\:text-green-500:hover{--tw-text-opacity:1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.hover\:text-purple-600:hover{--tw-text-opacity:1;color:rgb(147 51 234 / var(--tw-text-opacity, 1))}.hover\:text-red-500:hover{--tw-text-opacity:1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.hover\:text-red-600:hover{--tw-text-opacity:1;color:rgb(220 38 38 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:opacity-80:hover{opacity:0.8}.group:hover .group-hover\:scale-105{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@media (min-width: 640px){.sm\:block{display:block}.sm\:inline{display:inline}.sm\:h-20{height:5rem}.sm\:w-20{width:5rem}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}}@media (min-width: 768px){.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}}</style></head>
-<body class="bg-white">
-    <!-- Top Navigation Bar -->
-    <nav class="sticky top-0 z-50 nav-container shadow-sm">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
-                <!-- Logo and Title -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-full overflow-hidden ring-1 ring-gray-300">
-                        <img src="songs-under-the-radar.jpg" alt="Songs Under the Radar" class="w-full h-full object-cover">
-                    </div>
-                    <h2 class="text-lg font-bold hidden sm:block">Songs Under the Radar</h2>
-                </div>
-                
-                <!-- Social Links -->
-                <div class="social-links flex items-center space-x-4">
-                    <a target="_blank" href="https://open.spotify.com/user/313jggvtezc4tycfsp3yicyfb4hy" rel="noopener noreferrer" class="text-lg hover:text-green-500" title="Spotify Profile">
-                        <i class="fab fa-spotify"></i>
-                    </a>
-                    <a target="_blank" href="https://music.apple.com/profile/songsundertheradar" rel="noopener noreferrer" class="text-lg hover:text-red-500" title="Apple Music Profile">
-                        <i class="fab fa-apple"></i>
-                    </a>
-                    <a target="_blank" href="https://www.tiktok.com/@songsundertheradar" rel="noopener noreferrer" class="text-lg hover:text-black" title="TikTok">
-                        <i class="fab fa-tiktok"></i>
-                    </a>
-                    <a target="_blank" href="https://www.instagram.com/songsundertheradar" rel="noopener noreferrer" class="text-lg hover:text-purple-600" title="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a target="_blank" href="https://www.youtube.com/@songsundertheradar" rel="noopener noreferrer" class="text-lg hover:text-red-600" title="YouTube">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Songs Under the Radar — Discover Underground & Indie Artists</title>
+<meta name="description" content="Discover underground & indie artists every week with Songs Under the Radar. Explore our curated playlists of hidden musical gems.">
+<meta property="og:title" content="Songs Under the Radar — Discover Underground & Indie Artists">
+<meta property="og:description" content="Curated playlists of underground and indie artists. New discoveries every week.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/jpeg" href="songs-under-the-radar.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'WIN95FA';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/win95fa@latest/latin-400-normal.woff2) format('woff2'),
+         url(https://cdn.jsdelivr.net/fontsource/fonts/win95fa@latest/latin-400-normal.woff) format('woff');
+  }
+</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-    <div class="container mx-auto px-4 py-8">
-        <!-- Header Section -->
-        <header class="text-center mb-12">
-            <div class="flex justify-center mb-4">
-                <div class="w-24 h-24 rounded-full overflow-hidden ring-1 ring-gray-300 shadow-lg">
-                    <img src="songs-under-the-radar.jpg" alt="Songs Under the Radar" class="w-full h-full object-cover">
-                </div>
-            </div>
-            <h1 class="text-4xl font-bold mb-2">Songs Under the Radar</h1>
-            <p class="text-xl text-gray-600 mb-6">discover underground &amp; indie artists every week! save the playlists 👇</p>
-        </header>
-
-        <!-- Featured Section -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            <!-- Playlist 1: Bedroom Jams -->
-            <div class="playlist-card bg-white rounded-xl overflow-hidden" id="bedroom">
-                <div class="relative overflow-hidden group">
-                    <a target="_blank" href="https://open.spotify.com/playlist/36oTySSsTKMCdr9ShuZ3iX" rel="noopener noreferrer">
-                        <img src="underrated-bedroom-jams-playlist.jpg" alt="underrated bedroom jams" class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105">
-                    </a>
-                </div>
-                <div class="p-4">
-                    <h3 class="text-xl font-semibold mb-3">underrated bedroom jams</h3>
-                    <div class="flex space-x-2">
-                        <a target="_blank" href="https://open.spotify.com/playlist/36oTySSsTKMCdr9ShuZ3iX" rel="noopener noreferrer" class="btn btn-spotify flex-1">
-                            <i class="fab fa-spotify mr-2"></i>
-                            <span class="sr-only">Listen on Spotify</span>
-                            <span>Spotify</span>
-                        </a>
-                        <a target="_blank" href="https://music.apple.com/us/playlist/underrated-bedroom-jams/pl.u-d2b05g0TL7PqljR?ls" rel="noopener noreferrer" class="btn btn-apple flex-1">
-                            <i class="fab fa-apple mr-2"></i>
-                            <span class="sr-only">Listen on Apple Music</span>
-                            <span>Apple Music</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Playlist 2: Dance Songs -->
-            <div class="playlist-card bg-white rounded-xl overflow-hidden" id="dance">
-                <div class="relative overflow-hidden group">
-                    <a target="_blank" href="https://open.spotify.com/playlist/3lZxXsQkzatj364GAXJ6lY" rel="noopener noreferrer">
-                        <img src="underrated-dance-songs-playlist.jpg" alt="underrated dance music / songs for the club" class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105">
-                    </a>
-                </div>
-                <div class="p-4">
-                    <h3 class="text-xl font-semibold mb-3">underrated dance music / songs for the club</h3>
-                    <div class="flex space-x-2">
-                        <a target="_blank" href="https://open.spotify.com/playlist/3lZxXsQkzatj364GAXJ6lY" rel="noopener noreferrer" class="btn btn-spotify flex-1">
-                            <i class="fab fa-spotify mr-2"></i>
-                            <span class="sr-only">Listen on Spotify</span>
-                            <span>Spotify</span>
-                        </a>
-                        <a target="_blank" href="https://music.apple.com/us/playlist/underrated-dance-music-songs-for-the-club/pl.u-DdAN8Pau07DGjo9" rel="noopener noreferrer" class="btn btn-apple flex-1">
-                            <i class="fab fa-apple mr-2"></i>
-                            <span class="sr-only">Listen on Apple Music</span>
-                            <span>Apple Music</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Playlist 3: Love Songs -->
-            <div class="playlist-card bg-white rounded-xl overflow-hidden" id="love">
-                <div class="relative overflow-hidden group">
-                    <a target="_blank" href="https://open.spotify.com/playlist/2mJsT2EQ6SyDHG6ShYoAoE" rel="noopener noreferrer">
-                        <img src="underrated-love-playlist.jpg" alt="underrated love songs for when you're down bad" class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105">
-                    </a>
-                </div>
-                <div class="p-4">
-                    <h3 class="text-xl font-semibold mb-3">underrated love songs for when you're down bad</h3>
-                    <div class="flex space-x-2">
-                        <a target="_blank" href="https://open.spotify.com/playlist/2mJsT2EQ6SyDHG6ShYoAoE" rel="noopener noreferrer" class="btn btn-spotify flex-1">
-                            <i class="fab fa-spotify mr-2"></i>
-                            <span class="sr-only">Listen on Spotify</span>
-                            <span>Spotify</span>
-                        </a>
-                        <a target="_blank" href="https://music.apple.com/us/playlist/underrated-love-songs-for-when-youre-down-bad/pl.u-11zBJyyFN3XrAeJ?ls" rel="noopener noreferrer" class="btn btn-apple flex-1">
-                            <i class="fab fa-apple mr-2"></i>
-                            <span class="sr-only">Listen on Apple Music</span>
-                            <span>Apple Music</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Playlist 4: Late Night Drive Songs -->
-            <div class="playlist-card bg-white rounded-xl overflow-hidden" id="latenight">
-                <div class="relative overflow-hidden group">
-                    <a target="_blank" href="https://open.spotify.com/playlist/0AAV4BhH1a73FNNExGumgn" rel="noopener noreferrer">
-                        <img src="underrated-late-night-playlist.jpg" alt="underrated late night drive songs" class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105">
-                    </a>
-                </div>
-                <div class="p-4">
-                    <h3 class="text-xl font-semibold mb-3">underrated late night drive songs</h3>
-                    <div class="flex space-x-2">
-                        <a target="_blank" href="https://open.spotify.com/playlist/0AAV4BhH1a73FNNExGumgn" rel="noopener noreferrer" class="btn btn-spotify flex-1">
-                            <i class="fab fa-spotify mr-2"></i>
-                            <span class="sr-only">Listen on Spotify</span>
-                            <span>Spotify</span>
-                        </a>
-                        <a target="_blank" href="https://music.apple.com/us/playlist/underrated-late-night-drive-songs/pl.u-aZb0N5vC1GLjNed?ls" rel="noopener noreferrer" class="btn btn-apple flex-1">
-                            <i class="fab fa-apple mr-2"></i>
-                            <span class="sr-only">Listen on Apple Music</span>
-                            <span>Apple Music</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Playlist 5: R&B -->
-            <div class="playlist-card bg-white rounded-xl overflow-hidden" id="itgirl">
-                <div class="relative overflow-hidden group">
-                    <a target="_blank" href="https://open.spotify.com/playlist/2n7dbVMBib6HtJuo6vboxM" rel="noopener noreferrer">
-                        <img src="underrated-girlboss-playlist.jpg" alt="underrated dark feminine music" class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105">
-                    </a>
-                </div>
-                <div class="p-4">
-                    <h3 class="text-xl font-semibold mb-3">underrated dark feminine songs</h3>
-                    <div class="flex space-x-2">
-                        <a target="_blank" href="https://open.spotify.com/playlist/2n7dbVMBib6HtJuo6vboxM" rel="noopener noreferrer" class="btn btn-spotify flex-1">
-                            <i class="fab fa-spotify mr-2"></i>
-                            <span class="sr-only">Listen on Spotify</span>
-                            <span>Spotify</span>
-                        </a>
-                        <a target="_blank" href="https://music.apple.com/us/playlist/underrated-dark-feminine-music-for-girl-bosses-bad/pl.u-11zBJ7afN3XrAeJ?ls" rel="noopener noreferrer" class="btn btn-apple flex-1">
-                            <i class="fab fa-apple mr-2"></i>
-                            <span class="sr-only">Listen on Apple Music</span>
-                            <span>Apple Music</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Playlist 6: Sad Songs -->
-            <div class="playlist-card bg-white rounded-xl overflow-hidden" id="sad">
-                <div class="relative overflow-hidden group">
-                    <a target="_blank" href="https://open.spotify.com/playlist/5G8xtA60qu7e3p7X0mFe6W" rel="noopener noreferrer">
-                        <img src="underrated-sad-playlist.jpg" alt="underrated sad songs for broken hearts" class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105">
-                    </a>
-                </div>
-                <div class="p-4">
-                    <h3 class="text-xl font-semibold mb-3">underrated sad songs for broken hearts</h3>
-                    <div class="flex space-x-2">
-                        <a target="_blank" href="https://open.spotify.com/playlist/5G8xtA60qu7e3p7X0mFe6W" rel="noopener noreferrer" class="btn btn-spotify flex-1">
-                            <i class="fab fa-spotify mr-2"></i>
-                            <span class="sr-only">Listen on Spotify</span>
-                            <span>Spotify</span>
-                        </a>
-                        <a target="_blank" href="https://music.apple.com/us/playlist/underrated-sad-songs-for-broken-hearts/pl.u-d2b05VjsL7PqljR?ls" rel="noopener noreferrer" class="btn btn-apple flex-1">
-                            <i class="fab fa-apple mr-2"></i>
-                            <span class="sr-only">Listen on Apple Music</span>
-                            <span>Apple Music</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- More Playlists Section -->
-        <h2 class="text-2xl font-bold mb-6 text-center">More Playlists</h2>
-        <div class="bg-white rounded-xl shadow-md overflow-hidden mb-16">
-            <div class="divide-y">
-                <!-- Playlist Item 1 -->
-                <div class="hover:bg-gray-50 transition-colors" id="hot">
-                    <div class="flex items-center p-4">
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
-                            <img src="underrated-dark-feminine-playlist.jpg" alt="underrated songs for looking hot / walking the runway" class="w-full h-full object-cover rounded-lg">
-                        </div>
-                        <div class="ml-4 flex-grow">
-                            <h4 class="text-base sm:text-lg font-semibold">underrated songs for looking hot / walking the runway</h4>
-                        </div>
-                        <div class="flex space-x-2">
-                            <a target="_blank" href="https://open.spotify.com/playlist/2EtCq2UPExWastyjTUtpfh" rel="noopener noreferrer" class="btn btn-spotify">
-                                <i class="fab fa-spotify"></i>
-                                <span class="sr-only">Listen on Spotify</span>
-                            </a>
-                            <a target="_blank" href="https://music.apple.com/us/playlist/underrated-dark-feminine-music-for-girl-bosses-bad/pl.u-11zBJ7afN3XrAeJ?ls" rel="noopener noreferrer" class="btn btn-apple">
-                                <i class="fab fa-apple"></i>
-                                <span class="sr-only">Listen on Apple Music</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Playlist Item 2 -->
-                <div class="hover:bg-gray-50 transition-colors" id="indie">
-                    <div class="flex items-center p-4">
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
-                            <img src="underrated-r&amp;b-playlist.jpg" alt="underrated indie R&B" class="w-full h-full object-cover rounded-lg">
-                        </div>
-                        <div class="ml-4 flex-grow">
-                            <h4 class="text-base sm:text-lg font-semibold">underrated indie R&B</h4>
-                        </div>
-                        <div class="flex space-x-2">
-                            <a target="_blank" href="https://open.spotify.com/playlist/5PRDXQRM0paJzHiKdH7dH0" rel="noopener noreferrer" class="btn btn-spotify">
-                                <i class="fab fa-spotify"></i>
-                                <span class="sr-only">Listen on Spotify</span>
-                            </a>
-                            <a target="_blank" href="https://music.apple.com/us/playlist/underrated-indie-r-b/pl.u-e98lGpKcam4R2JA?ls" rel="noopener noreferrer" class="btn btn-apple">
-                                <i class="fab fa-apple"></i>
-                                <span class="sr-only">Listen on Apple Music</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Playlist Item 3 -->
-                <div class="hover:bg-gray-50 transition-colors" id="summer">
-                    <div class="flex items-center p-4">
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
-                            <img src="underrated-summer-playlist.jpg" alt="underrated summer songs" class="w-full h-full object-cover rounded-lg">
-                        </div>
-                        <div class="ml-4 flex-grow">
-                            <h4 class="text-base sm:text-lg font-semibold">underrated summer songs</h4>
-                        </div>
-                        <div class="flex space-x-2">
-                            <a target="_blank" href="https://open.spotify.com/playlist/48ulGV621w2X4f28cv8BjE" rel="noopener noreferrer" class="btn btn-spotify">
-                                <i class="fab fa-spotify"></i>
-                                <span class="sr-only">Listen on Spotify</span>
-                            </a>
-                            <a target="_blank" href="https://music.apple.com/us/playlist/underrated-summer-songs/pl.u-e98lGLqFam4R2JA?ls" rel="noopener noreferrer" class="btn btn-apple">
-                                <i class="fab fa-apple"></i>
-                                <span class="sr-only">Listen on Apple Music</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Playlist Item 4 -->
-                <div class="hover:bg-gray-50 transition-colors" id="toxic">
-                    <div class="flex items-center p-4">
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
-                            <img src="underrated-toxic-songs-playlist.jpg" alt="underrated toxic songs" class="w-full h-full object-cover rounded-lg">
-                        </div>
-                        <div class="ml-4 flex-grow">
-                            <h4 class="text-base sm:text-lg font-semibold">underrated toxic songs</h4>
-                        </div>
-                        <div class="flex space-x-2">
-                            <a target="_blank" href="https://open.spotify.com/playlist/6aT6mCuEFPD95eHnQxREjJ" rel="noopener noreferrer" class="btn btn-spotify">
-                                <i class="fab fa-spotify"></i>
-                                <span class="sr-only">Listen on Spotify</span>
-                            </a>
-                            <a target="_blank" href="https://music.apple.com/us/playlist/underrated-toxic-songs/pl.u-e98lGaDHam4R2JA?ls" rel="noopener noreferrer" class="btn btn-apple">
-                                <i class="fab fa-apple"></i>
-                                <span class="sr-only">Listen on Apple Music</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Playlist Item 5 -->
-                <div class="hover:bg-gray-50 transition-colors">
-                    <div class="flex items-center p-4">
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
-                            <img src="underrated-2000s-playlist.jpg" alt="underrated 2000s" class="w-full h-full object-cover rounded-lg">
-                        </div>
-                        <div class="ml-4 flex-grow">
-                            <h4 class="text-base sm:text-lg font-semibold">underrated 2000s</h4>
-                        </div>
-                        <div class="flex space-x-2">
-                            <a target="_blank" href="https://open.spotify.com/playlist/4pOxhq3qSGJ8uRtH3EGqS3" rel="noopener noreferrer" class="btn btn-spotify">
-                                <i class="fab fa-spotify"></i>
-                                <span class="sr-only">Listen on Spotify</span>
-                            </a>
-                            <a target="_blank" href="https://music.apple.com/us/playlist/underrated-2000s/pl.u-JPAZbJmTL60ym4p?ls" rel="noopener noreferrer" class="btn btn-apple">
-                                <i class="fab fa-apple"></i>
-                                <span class="sr-only">Listen on Apple Music</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Playlist Item 6 -->
-                <div class="hover:bg-gray-50 transition-colors" id="weeknd">
-                    <div class="flex items-center p-4">
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
-                            <img src="underrated-weeknd-playlist.jpg" alt="the weeknd underground songs" class="w-full h-full object-cover rounded-lg">
-                        </div>
-                        <div class="ml-4 flex-grow">
-                            <h4 class="text-base sm:text-lg font-semibold">the weeknd underground songs</h4>
-                        </div>
-                        <div class="flex space-x-2">
-                            <a target="_blank" href="https://open.spotify.com/playlist/104GQJbUaGt4G5yDT791Dw" rel="noopener noreferrer" class="btn btn-spotify">
-                                <i class="fab fa-spotify"></i>
-                                <span class="sr-only">Listen on Spotify</span>
-                            </a>
-                            <a target="_blank" href="https://music.apple.com/us/playlist/the-weeknd-underground-songs/pl.u-d2b05ZYsL7PqljR?ls" rel="noopener noreferrer" class="btn btn-apple">
-                                <i class="fab fa-apple"></i>
-                                <span class="sr-only">Listen on Apple Music</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Playlist Item 7 -->
-                <div class="hover:bg-gray-50 transition-colors" id="winter">
-                    <div class="flex items-center p-4">
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
-                            <img src="underrated-winter-blues-playlist.jpg" alt="underrated songs for winter blues" class="w-full h-full object-cover rounded-lg">
-                        </div>
-                        <div class="ml-4 flex-grow">
-                            <h4 class="text-base sm:text-lg font-semibold">underrated songs for winter blues</h4>
-                        </div>
-                        <div class="flex space-x-2">
-                            <a target="_blank" href="https://open.spotify.com/playlist/1o88u1YBGQs5M06jqczUUx" rel="noopener noreferrer" class="btn btn-spotify">
-                                <i class="fab fa-spotify"></i>
-                                <span class="sr-only">Listen on Spotify</span>
-                            </a>
-                            <a target="_blank" href="https://music.apple.com/us/playlist/underrated-songs-for-winter-blues/pl.u-9N9L2GyI1ZKpjvr?ls" rel="noopener noreferrer" class="btn btn-apple">
-                                <i class="fab fa-apple"></i>
-                                <span class="sr-only">Listen on Apple Music</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Call to Action Section -->
-        <div class="bg-gray-800 rounded-xl shadow-lg p-8 text-gray-100 text-center mb-16">
-            <h2 class="text-3xl font-bold mb-4">Discover More Underground Music</h2>
-            <p class="text-lg mb-6">Follow us on social media for daily music recommendations and playlist updates</p>
-            <div class="flex justify-center space-x-4">
-                <a target="_blank" href="https://www.tiktok.com/@songsundertheradar" rel="noopener noreferrer" class="bg-black text-white px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition flex items-center">
-                    <i class="fab fa-tiktok mr-2"></i> TikTok
-                </a>
-                <a target="_blank" href="https://www.instagram.com/songsundertheradar" rel="noopener noreferrer" class="bg-black text-white px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition flex items-center">
-                    <i class="fab fa-instagram mr-2"></i> Instagram
-                </a>
-            </div>
-        </div>
-        
-        <!-- Streaming Services Section -->
-        <div class="bg-white rounded-xl shadow-md p-6 mb-16">
-            <h2 class="text-2xl font-bold mb-4 text-center">Choose Your Music Platform</h2>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
-                <a target="_blank" href="https://open.spotify.com/user/313jggvtezc4tycfsp3yicyfb4hy" class="flex-1 flex flex-col items-center p-4 rounded-lg hover:bg-gray-50 transition">
-                    <div class="text-5xl text-green-500 mb-2">
-                        <i class="fab fa-spotify"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">Spotify</h3>
-                    <p class="text-sm text-gray-600 text-center mt-2">Follow all our Spotify playlists for weekly updates</p>
-                </a>
-                <div class="hidden sm:block h-20 border-r border-gray-300"></div>
-                <a target="_blank" href="https://music.apple.com/profile/songsundertheradar" class="flex-1 flex flex-col items-center p-4 rounded-lg hover:bg-gray-50 transition">
-                    <div class="text-5xl text-red-500 mb-2">
-                        <i class="fab fa-apple"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">Apple Music</h3>
-                    <p class="text-sm text-gray-600 text-center mt-2">Find all our curated playlists on Apple Music</p>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 mt-12">
-    <div class="container mx-auto px-4">
-        <!-- Social Media Icons -->
-        <div class="flex justify-center space-x-6 mb-6">
-            <a href="https://www.tiktok.com/@songsundertheradar" target="_blank" rel="noopener noreferrer" class="text-3xl hover:text-gray-400">
-                <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="https://www.instagram.com/songsundertheradar" target="_blank" rel="noopener noreferrer" class="text-3xl hover:text-gray-400">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.youtube.com/@songsundertheradar" target="_blank" rel="noopener noreferrer" class="text-3xl hover:text-gray-400">
-                <i class="fab fa-youtube"></i>
-            </a>
-        </div>
-        <!-- Disclaimer -->
-        <div class="text-center text-sm text-gray-400 px-4">
-            All copyrights are property of their respective owner. Songs Under The Radar is a free service curating music on Spotify strictly for educational &amp; entertainment purposes.
-        </div>
-    </div>
-</footer>
-    
-<!-- Add a little JavaScript to enhance the UX -->
-<script>
-    // Add smooth scrolling for anchor links with centered view
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = targetPosition - (window.innerHeight / 2) + (target.offsetHeight / 2);
-                
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Songs Under the Radar",
+  "url": "https://songsundertheradar.com",
+  "description": "Discover underground & indie artists every week with Songs Under the Radar.",
+  "sameAs": [
+    "https://www.instagram.com/songsundertheradar",
+    "https://www.tiktok.com/@songsundertheradar",
+    "https://www.youtube.com/@songsundertheradar"
+  ]
+}
 </script>
 
-    
-<script>
-// Function to highlight div based on URL anchor and center it
-function highlightDivFromAnchor() {
-  const anchor = window.location.hash.substring(1);
-  
-  if (anchor) {
-    const targetElement = document.getElementById(anchor);
-    
-    if (targetElement) {
-      const originalBorder = targetElement.style.border;
-      
-      targetElement.style.border = '2px solid black';
-      
-      // Center the element in view
-      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = targetPosition - (window.innerHeight / 2) + (targetElement.offsetHeight / 2);
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-      
-      setTimeout(() => {
-        targetElement.style.border = originalBorder;
-      }, 5000);
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0A0A0A;
+    --near-black: #111111;
+    --card: #181818;
+    --card-hover: #1F1F1F;
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.16);
+    --text-primary: #F5F0E8;
+    --text-muted: #888880;
+    --text-subtle: #555550;
+    --accent: #C8F564;
+    --accent-dim: rgba(200,245,100,0.12);
+    --spotify: #1DB954;
+    --apple: #FC3C44;
+    --font-display: 'Press Start 2P', monospace;
+    --font-body: 'WIN95FA', monospace;
+    --font-label: 'Silkscreen', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border-hover);
+  }
+
+  .nav-name {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: var(--text-primary);
+  }
+
+  .nav-socials {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .nav-socials a {
+    color: var(--text-muted);
+    font-size: 16px;
+    transition: color 0.18s;
+    line-height: 1;
+  }
+
+  .nav-socials a:hover { color: var(--text-primary); }
+
+  /* MAIN */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    padding: 72px 0 56px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  #radar-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .hero-content {
+      max-width: 50%;
     }
   }
-}
 
-// Run the function when the page loads
-document.addEventListener('DOMContentLoaded', highlightDivFromAnchor);
+  .hero-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border-hover);
+    margin: 0 auto 24px;
+    display: block;
+  }
 
-// Also run the function when the hash changes (if user navigates to a different anchor)
-window.addEventListener('hashchange', highlightDivFromAnchor);
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0em;
+    word-spacing: -0.35em;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .hero h1 { font-size: 28px; }
+  }
+
+  @media (min-width: 1100px) {
+    .hero h1 { font-size: 34px; }
+  }
+
+  .hero h1 .glitch-word {
+    position: relative;
+    display: inline-block;
+    color: var(--accent);
+    text-shadow:
+      0 0 12px rgba(200,245,100,0.7),
+      0 0 32px rgba(200,245,100,0.3);
+    animation: glitch-shimmer 4s infinite;
+  }
+
+  .hero h1 .glitch-word::before,
+  .hero h1 .glitch-word::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+
+  .hero h1 .glitch-word::before {
+    color: #ff3cac;
+    animation: glitch-before 4s infinite;
+    clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+  }
+
+  .hero h1 .glitch-word::after {
+    color: #00f5ff;
+    animation: glitch-after 4s infinite;
+    clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+  }
+
+  @keyframes glitch-shimmer {
+    0%, 88%, 100% {
+      text-shadow:
+        0 0 12px rgba(200,245,100,0.7),
+        0 0 32px rgba(200,245,100,0.3);
+    }
+    90% {
+      text-shadow:
+        0 0 2px rgba(200,245,100,0.4),
+        0 0 8px rgba(200,245,100,0.1);
+      transform: translate(-2px, 0);
+    }
+    91% {
+      text-shadow:
+        0 0 20px rgba(200,245,100,1),
+        0 0 48px rgba(200,245,100,0.5);
+      transform: translate(2px, 0);
+    }
+    92% {
+      text-shadow:
+        0 0 12px rgba(200,245,100,0.7),
+        0 0 32px rgba(200,245,100,0.3);
+      transform: translate(0, 0);
+    }
+    94% { transform: translate(-1px, 0); }
+    95% { transform: translate(0, 0); }
+  }
+
+  @keyframes glitch-before {
+    0%, 88%, 96%, 100% { opacity: 0; transform: translate(0,0); }
+    90% { opacity: 0.8; transform: translate(-3px, 1px); }
+    91% { opacity: 0; }
+    93% { opacity: 0.6; transform: translate(3px, -1px); }
+    94% { opacity: 0; }
+  }
+
+  @keyframes glitch-after {
+    0%, 88%, 96%, 100% { opacity: 0; transform: translate(0,0); }
+    90% { opacity: 0; }
+    91% { opacity: 0.7; transform: translate(3px, 1px); }
+    92% { opacity: 0; }
+    94% { opacity: 0.5; transform: translate(-3px, 0); }
+    95% { opacity: 0; }
+  }
+
+  .hero-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+    max-width: 340px;
+    margin: 0 auto;
+    line-height: 2;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-family: var(--font-label);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* FEATURED GRID */
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+
+  @media (max-width: 720px) {
+    .featured-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .featured-grid { grid-template-columns: 1fr; }
+  }
+
+  /* PLAYLIST CARD */
+  .card {
+    position: relative;
+    overflow: hidden;
+    background: var(--card);
+    cursor: pointer;
+    display: block;
+  }
+
+  .card-img-wrap {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+
+  .card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.25, 0, 0, 1);
+  }
+
+  .card:hover .card-img-wrap img {
+    transform: scale(1.04);
+  }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.4) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.28s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+  }
+
+  .card:hover .card-overlay {
+    opacity: 1;
+  }
+
+  .card-info {
+    padding: 14px 16px 16px;
+    border-top: 1px solid var(--border);
+    position: relative;
+  }
+
+  .card-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.28s ease;
+  }
+
+  .card:hover .card-info::before {
+    transform: scaleX(1);
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: var(--text-primary);
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 6px;
+  }
+
+  /* STREAM BUTTONS */
+  .btn-stream {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: var(--font-body);
+    letter-spacing: 0.01em;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .btn-spotify {
+    background: var(--spotify);
+    color: #fff;
+  }
+
+  .btn-spotify:hover {
+    background: #1fce61;
+    transform: translateY(-1px);
+  }
+
+  .btn-apple {
+    background: var(--apple);
+    color: #fff;
+  }
+
+  .btn-apple:hover {
+    background: #ff5460;
+    transform: translateY(-1px);
+  }
+
+  .btn-stream-sm {
+    padding: 7px 10px;
+    font-size: 13px;
+    flex: none;
+    border-radius: 4px;
+    justify-content: center;
+    width: 36px;
+  }
+
+
+
+  /* MORE LIST */
+  .more-section {
+    margin-top: 48px;
+  }
+
+  .list-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 0;
+    margin-top: -1px;
+    background: var(--near-black);
+    transition: background 0.18s, border-color 0.18s;
+    position: relative;
+  }
+
+  .list-card:first-child { border-radius: 6px 6px 0 0; }
+  .list-card:last-child { border-radius: 0 0 6px 6px; }
+
+  .list-card:hover {
+    background: var(--card);
+    border-color: var(--border-hover);
+    z-index: 1;
+  }
+
+  .list-card:hover .list-title {
+    color: var(--text-primary);
+  }
+
+  .list-thumb {
+    width: 52px;
+    height: 52px;
+    border-radius: 3px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .list-title {
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: #ccc;
+    flex: 1;
+    line-height: 1.8;
+    transition: color 0.18s;
+  }
+
+  .list-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  /* CTA STRIP */
+  .cta-strip {
+    margin-top: 64px;
+    padding: 48px 40px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--near-black);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-strip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+
+  .cta-title {
+    font-family: var(--font-display);
+    font-size: clamp(16px, 2.5vw, 28px);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .cta-sub {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+
+  .cta-socials {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn-social {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 1px solid var(--border-hover);
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--font-body);
+    transition: all 0.18s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn-social:hover {
+    background: var(--accent);
+    color: var(--black);
+    border-color: var(--accent);
+  }
+
+  /* PLATFORMS */
+  .platforms {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  @media (max-width: 540px) {
+    .platforms { grid-template-columns: 1fr; }
+  }
+
+  .platform-card {
+    background: var(--near-black);
+    border: 1px solid var(--border);
+    padding: 32px 24px;
+    text-align: center;
+    transition: border-color 0.18s, background 0.18s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .platform-card:first-child { border-radius: 6px 0 0 6px; }
+  .platform-card:last-child { border-radius: 0 6px 6px 0; }
+
+  @media (max-width: 540px) {
+    .platform-card:first-child { border-radius: 6px 6px 0 0; }
+    .platform-card:last-child { border-radius: 0 0 6px 6px; }
+  }
+
+  .platform-card:hover {
+    background: var(--card);
+    border-color: var(--border-hover);
+  }
+
+  .platform-icon {
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  .platform-icon.spotify { color: var(--spotify); }
+  .platform-icon.apple { color: var(--apple); }
+
+  .platform-name {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: var(--text-primary);
+  }
+
+  .platform-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 200px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-socials a {
+    color: var(--text-subtle);
+    font-size: 20px;
+    transition: color 0.18s;
+  }
+
+  .footer-socials a:hover { color: var(--text-primary); }
+
+  .footer-legal {
+    font-size: 11px;
+    color: var(--text-subtle);
+    text-align: center;
+    max-width: 520px;
+    line-height: 1.9;
+  }
+
+  /* ANCHOR HIGHLIGHT */
+  .highlight-target {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <img src="songs-under-the-radar.jpg" alt="" class="nav-logo" aria-hidden="true">
+      <span class="nav-name">Songs Under the Radar</span>
+    </div>
+    <div class="nav-socials" role="list" aria-label="Social profiles">
+      <a href="https://open.spotify.com/user/313jggvtezc4tycfsp3yicyfb4hy" target="_blank" rel="noopener noreferrer" title="Spotify" role="listitem"><i class="fab fa-spotify" aria-hidden="true"></i><span class="sr-only">Spotify</span></a>
+      <a href="https://music.apple.com/profile/songsundertheradar" target="_blank" rel="noopener noreferrer" title="Apple Music" role="listitem"><i class="fab fa-apple" aria-hidden="true"></i><span class="sr-only">Apple Music</span></a>
+      <a href="https://www.tiktok.com/@songsundertheradar" target="_blank" rel="noopener noreferrer" title="TikTok" role="listitem"><i class="fab fa-tiktok" aria-hidden="true"></i><span class="sr-only">TikTok</span></a>
+      <a href="https://www.instagram.com/songsundertheradar" target="_blank" rel="noopener noreferrer" title="Instagram" role="listitem"><i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">Instagram</span></a>
+      <a href="https://www.youtube.com/@songsundertheradar" target="_blank" rel="noopener noreferrer" title="YouTube" role="listitem"><i class="fab fa-youtube" aria-hidden="true"></i><span class="sr-only">YouTube</span></a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- Hero -->
+  <header class="hero">
+    <canvas id="radar-canvas" aria-hidden="true"></canvas>
+    <div class="hero-content">
+      <img src="songs-under-the-radar.jpg" alt="Songs Under the Radar" class="hero-avatar">
+      <h1>songs <span class="glitch-word" data-text="under">under</span><br>the radar</h1>
+      <p class="hero-sub">underground & indie artists, curated weekly. save the playlists below.</p>
+    </div>
+  </header>
+
+  <!-- Featured playlists -->
+  <p class="section-label">featured playlists</p>
+
+  <div class="featured-grid" role="list">
+
+    <!-- Bedroom Jams -->
+    <div class="card" id="bedroom" role="listitem">
+      <div class="card-img-wrap">
+        <img src="underrated-bedroom-jams-playlist.jpg" alt="underrated bedroom jams playlist cover" loading="lazy">
+        <div class="card-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="card-info">
+        <h3 class="card-title">underrated bedroom jams</h3>
+        <div class="card-actions">
+          <a href="https://open.spotify.com/playlist/36oTySSsTKMCdr9ShuZ3iX" target="_blank" rel="noopener noreferrer" class="btn-stream btn-spotify">
+            <i class="fab fa-spotify" aria-hidden="true"></i> Spotify
+          </a>
+          <a href="https://music.apple.com/us/playlist/underrated-bedroom-jams/pl.u-d2b05g0TL7PqljR?ls" target="_blank" rel="noopener noreferrer" class="btn-stream btn-apple">
+            <i class="fab fa-apple" aria-hidden="true"></i> Apple Music
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dance Songs -->
+    <div class="card" id="dance" role="listitem">
+      <div class="card-img-wrap">
+        <img src="underrated-dance-songs-playlist.jpg" alt="underrated dance music playlist cover" loading="lazy">
+        <div class="card-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="card-info">
+        <h3 class="card-title">underrated dance music / songs for the club</h3>
+        <div class="card-actions">
+          <a href="https://open.spotify.com/playlist/3lZxXsQkzatj364GAXJ6lY" target="_blank" rel="noopener noreferrer" class="btn-stream btn-spotify"><i class="fab fa-spotify" aria-hidden="true"></i> Spotify</a>
+          <a href="https://music.apple.com/us/playlist/underrated-dance-music-songs-for-the-club/pl.u-DdAN8Pau07DGjo9" target="_blank" rel="noopener noreferrer" class="btn-stream btn-apple"><i class="fab fa-apple" aria-hidden="true"></i> Apple Music</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Love Songs -->
+    <div class="card" id="love" role="listitem">
+      <div class="card-img-wrap">
+        <img src="underrated-love-playlist.jpg" alt="underrated love songs playlist cover" loading="lazy">
+        <div class="card-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="card-info">
+        <h3 class="card-title">underrated love songs for when you're down bad</h3>
+        <div class="card-actions">
+          <a href="https://open.spotify.com/playlist/2mJsT2EQ6SyDHG6ShYoAoE" target="_blank" rel="noopener noreferrer" class="btn-stream btn-spotify"><i class="fab fa-spotify" aria-hidden="true"></i> Spotify</a>
+          <a href="https://music.apple.com/us/playlist/underrated-love-songs-for-when-youre-down-bad/pl.u-11zBJyyFN3XrAeJ?ls" target="_blank" rel="noopener noreferrer" class="btn-stream btn-apple"><i class="fab fa-apple" aria-hidden="true"></i> Apple Music</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Late Night -->
+    <div class="card" id="latenight" role="listitem">
+      <div class="card-img-wrap">
+        <img src="underrated-late-night-playlist.jpg" alt="underrated late night drive songs playlist cover" loading="lazy">
+        <div class="card-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="card-info">
+        <h3 class="card-title">underrated late night drive songs</h3>
+        <div class="card-actions">
+          <a href="https://open.spotify.com/playlist/0AAV4BhH1a73FNNExGumgn" target="_blank" rel="noopener noreferrer" class="btn-stream btn-spotify"><i class="fab fa-spotify" aria-hidden="true"></i> Spotify</a>
+          <a href="https://music.apple.com/us/playlist/underrated-late-night-drive-songs/pl.u-aZb0N5vC1GLjNed?ls" target="_blank" rel="noopener noreferrer" class="btn-stream btn-apple"><i class="fab fa-apple" aria-hidden="true"></i> Apple Music</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dark Feminine -->
+    <div class="card" id="itgirl" role="listitem">
+      <div class="card-img-wrap">
+        <img src="underrated-girlboss-playlist.jpg" alt="underrated dark feminine songs playlist cover" loading="lazy">
+        <div class="card-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="card-info">
+        <h3 class="card-title">underrated dark feminine songs</h3>
+        <div class="card-actions">
+          <a href="https://open.spotify.com/playlist/2n7dbVMBib6HtJuo6vboxM" target="_blank" rel="noopener noreferrer" class="btn-stream btn-spotify"><i class="fab fa-spotify" aria-hidden="true"></i> Spotify</a>
+          <a href="https://music.apple.com/us/playlist/underrated-dark-feminine-music-for-girl-bosses-bad/pl.u-11zBJ7afN3XrAeJ?ls" target="_blank" rel="noopener noreferrer" class="btn-stream btn-apple"><i class="fab fa-apple" aria-hidden="true"></i> Apple Music</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sad Songs -->
+    <div class="card" id="sad" role="listitem">
+      <div class="card-img-wrap">
+        <img src="underrated-sad-playlist.jpg" alt="underrated sad songs for broken hearts playlist cover" loading="lazy">
+        <div class="card-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="card-info">
+        <h3 class="card-title">underrated sad songs for broken hearts</h3>
+        <div class="card-actions">
+          <a href="https://open.spotify.com/playlist/5G8xtA60qu7e3p7X0mFe6W" target="_blank" rel="noopener noreferrer" class="btn-stream btn-spotify"><i class="fab fa-spotify" aria-hidden="true"></i> Spotify</a>
+          <a href="https://music.apple.com/us/playlist/underrated-sad-songs-for-broken-hearts/pl.u-d2b05VjsL7PqljR?ls" target="_blank" rel="noopener noreferrer" class="btn-stream btn-apple"><i class="fab fa-apple" aria-hidden="true"></i> Apple Music</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- More Playlists -->
+  <div class="more-section">
+    <p class="section-label">more playlists</p>
+
+    <div role="list">
+
+      <div class="list-card" id="hot" role="listitem">
+        <img src="underrated-dark-feminine-playlist.jpg" alt="" class="list-thumb" aria-hidden="true" loading="lazy">
+        <span class="list-title">underrated songs for looking hot / walking the runway</span>
+        <div class="list-actions">
+          <a href="https://open.spotify.com/playlist/2EtCq2UPExWastyjTUtpfh" target="_blank" rel="noopener noreferrer" class="btn-stream btn-spotify btn-stream-sm" aria-label="Listen on Spotify"><i class="fab fa-spotify" aria-hidden="true"></i></a>
+          <a href="https://music.apple.com/us/playlist/underrated-dark-feminine-music-for-girl-bosses-bad/pl.u-11zBJ7afN3XrAeJ?ls" target="_blank" rel="noopener noreferrer" class="btn-stream btn-apple btn-stream-sm" aria-label="Listen on Apple Music"><i class="fab fa-apple" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="list-card" id="indie" role="listitem">
+        <img src="underrated-r&b-playlist.jpg" alt="" class="list-thumb" aria-hidden="true" loading="lazy">
+        <span class="list-title">underrated indie R&B</span>
+        <div class="list-actions">
+          <a href="https://open.spotify.com/playlist/5PRDXQRM0paJzHiKdH7dH0" target="_blank" rel="noopener noreferrer" class="btn-stream btn-spotify btn-stream-sm" aria-label="Listen on Spotify"><i class="fab fa-spotify" aria-hidden="true"></i></a>
+          <a href="https://music.apple.com/us/playlist/underrated-indie-r-b/pl.u-e98lGpKcam4R2JA?ls" target="_blank" rel="noopener noreferrer" class="btn-stream btn-apple btn-stream-sm" aria-label="Listen on Apple Music"><i class="fab fa-apple" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="list-card" id="summer" role="listitem">
+        <img src="underrated-summer-playlist.jpg" alt="" class="list-thumb" aria-hidden="true" loading="lazy">
+        <span class="list-title">underrated summer songs</span>
+        <div class="list-actions">
+          <a href="https://open.spotify.com/playlist/48ulGV621w2X4f28cv8BjE" target="_blank" rel="noopener noreferrer" class="btn-stream btn-spotify btn-stream-sm" aria-label="Listen on Spotify"><i class="fab fa-spotify" aria-hidden="true"></i></a>
+          <a href="https://music.apple.com/us/playlist/underrated-summer-songs/pl.u-e98lGLqFam4R2JA?ls" target="_blank" rel="noopener noreferrer" class="btn-stream btn-apple btn-stream-sm" aria-label="Listen on Apple Music"><i class="fab fa-apple" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="list-card" id="toxic" role="listitem">
+        <img src="underrated-toxic-songs-playlist.jpg" alt="" class="list-thumb" aria-hidden="true" loading="lazy">
+        <span class="list-title">underrated toxic songs</span>
+        <div class="list-actions">
+          <a href="https://open.spotify.com/playlist/6aT6mCuEFPD95eHnQxREjJ" target="_blank" rel="noopener noreferrer" class="btn-stream btn-spotify btn-stream-sm" aria-label="Listen on Spotify"><i class="fab fa-spotify" aria-hidden="true"></i></a>
+          <a href="https://music.apple.com/us/playlist/underrated-toxic-songs/pl.u-e98lGaDHam4R2JA?ls" target="_blank" rel="noopener noreferrer" class="btn-stream btn-apple btn-stream-sm" aria-label="Listen on Apple Music"><i class="fab fa-apple" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="list-card" role="listitem">
+        <img src="underrated-2000s-playlist.jpg" alt="" class="list-thumb" aria-hidden="true" loading="lazy">
+        <span class="list-title">underrated 2000s</span>
+        <div class="list-actions">
+          <a href="https://open.spotify.com/playlist/4pOxhq3qSGJ8uRtH3EGqS3" target="_blank" rel="noopener noreferrer" class="btn-stream btn-spotify btn-stream-sm" aria-label="Listen on Spotify"><i class="fab fa-spotify" aria-hidden="true"></i></a>
+          <a href="https://music.apple.com/us/playlist/underrated-2000s/pl.u-JPAZbJmTL60ym4p?ls" target="_blank" rel="noopener noreferrer" class="btn-stream btn-apple btn-stream-sm" aria-label="Listen on Apple Music"><i class="fab fa-apple" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="list-card" id="weeknd" role="listitem">
+        <img src="underrated-weeknd-playlist.jpg" alt="" class="list-thumb" aria-hidden="true" loading="lazy">
+        <span class="list-title">the weeknd underground songs</span>
+        <div class="list-actions">
+          <a href="https://open.spotify.com/playlist/104GQJbUaGt4G5yDT791Dw" target="_blank" rel="noopener noreferrer" class="btn-stream btn-spotify btn-stream-sm" aria-label="Listen on Spotify"><i class="fab fa-spotify" aria-hidden="true"></i></a>
+          <a href="https://music.apple.com/us/playlist/the-weeknd-underground-songs/pl.u-d2b05ZYsL7PqljR?ls" target="_blank" rel="noopener noreferrer" class="btn-stream btn-apple btn-stream-sm" aria-label="Listen on Apple Music"><i class="fab fa-apple" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="list-card" id="winter" role="listitem">
+        <img src="underrated-winter-blues-playlist.jpg" alt="" class="list-thumb" aria-hidden="true" loading="lazy">
+        <span class="list-title">underrated songs for winter blues</span>
+        <div class="list-actions">
+          <a href="https://open.spotify.com/playlist/1o88u1YBGQs5M06jqczUUx" target="_blank" rel="noopener noreferrer" class="btn-stream btn-spotify btn-stream-sm" aria-label="Listen on Spotify"><i class="fab fa-spotify" aria-hidden="true"></i></a>
+          <a href="https://music.apple.com/us/playlist/underrated-songs-for-winter-blues/pl.u-9N9L2GyI1ZKpjvr?ls" target="_blank" rel="noopener noreferrer" class="btn-stream btn-apple btn-stream-sm" aria-label="Listen on Apple Music"><i class="fab fa-apple" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA Strip -->
+  <div class="cta-strip">
+    <h2 class="cta-title">new drops every week</h2>
+    <p class="cta-sub">follow for daily music recommendations and playlist updates</p>
+    <div class="cta-socials">
+      <a href="https://www.tiktok.com/@songsundertheradar" target="_blank" rel="noopener noreferrer" class="btn-social">
+        <i class="fab fa-tiktok" aria-hidden="true"></i> TikTok
+      </a>
+      <a href="https://www.instagram.com/songsundertheradar" target="_blank" rel="noopener noreferrer" class="btn-social">
+        <i class="fab fa-instagram" aria-hidden="true"></i> Instagram
+      </a>
+      <a href="https://www.youtube.com/@songsundertheradar" target="_blank" rel="noopener noreferrer" class="btn-social">
+        <i class="fab fa-youtube" aria-hidden="true"></i> YouTube
+      </a>
+    </div>
+  </div>
+
+  <!-- Platforms -->
+  <div class="platforms" role="list" aria-label="Streaming platforms">
+    <a href="https://open.spotify.com/user/313jggvtezc4tycfsp3yicyfb4hy" target="_blank" rel="noopener noreferrer" class="platform-card" role="listitem">
+      <span class="platform-icon spotify"><i class="fab fa-spotify" aria-hidden="true"></i></span>
+      <span class="platform-name">Spotify</span>
+      <span class="platform-desc">Follow all our playlists for weekly updates</span>
+    </a>
+    <a href="https://music.apple.com/profile/songsundertheradar" target="_blank" rel="noopener noreferrer" class="platform-card" role="listitem">
+      <span class="platform-icon apple"><i class="fab fa-apple" aria-hidden="true"></i></span>
+      <span class="platform-name">Apple Music</span>
+      <span class="platform-desc">Find all our curated playlists on Apple Music</span>
+    </a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-socials" role="list" aria-label="Social links">
+    <a href="https://www.tiktok.com/@songsundertheradar" target="_blank" rel="noopener noreferrer" title="TikTok" role="listitem"><i class="fab fa-tiktok" aria-hidden="true"></i><span class="sr-only">TikTok</span></a>
+    <a href="https://www.instagram.com/songsundertheradar" target="_blank" rel="noopener noreferrer" title="Instagram" role="listitem"><i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">Instagram</span></a>
+    <a href="https://www.youtube.com/@songsundertheradar" target="_blank" rel="noopener noreferrer" title="YouTube" role="listitem"><i class="fab fa-youtube" aria-hidden="true"></i><span class="sr-only">YouTube</span></a>
+  </div>
+  <p class="footer-legal">All copyrights are property of their respective owners. Songs Under the Radar is a free service curating music on Spotify strictly for educational & entertainment purposes.</p>
+</footer>
+
+<style>
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0;
+    margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border-width: 0;
+  }
+</style>
+
+<script>
+(function() {
+  const canvas = document.getElementById('radar-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const A = 'rgba(200,245,100,';
+  const RINGS = 5;
+  let sweep = 0, t = 0;
+  let W, H, cx, cy, maxR;
+
+  const BLIPS = [
+    { ring: 2, angle: 0.8,  phase: 0.0 },
+    { ring: 4, angle: 2.3,  phase: 1.2 },
+    { ring: 1, angle: 4.1,  phase: 0.6 },
+    { ring: 3, angle: 5.5,  phase: 2.0 },
+  ];
+
+  function resize() {
+    const hero = canvas.parentElement;
+    W = canvas.width = hero.offsetWidth;
+    H = canvas.height = hero.offsetHeight;
+    cx = W / 2; cy = H / 2;
+    maxR = Math.min(W, H) * 0.72;
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    t += 0.012;
+
+    // Central radial glow
+    const cg = ctx.createRadialGradient(cx, cy, 0, cx, cy, maxR * 0.5);
+    cg.addColorStop(0,    A + '0.10)');
+    cg.addColorStop(0.3,  A + '0.03)');
+    cg.addColorStop(1,    A + '0.00)');
+    ctx.fillStyle = cg;
+    ctx.fillRect(0, 0, W, H);
+
+    // Static rings — inner brightest, outer fades but all actually visible
+    for (let i = 1; i <= RINGS; i++) {
+      const r = (maxR / RINGS) * i;
+      const alpha = 0.32 * Math.pow(1 - (i - 1) / RINGS, 1.2);
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.strokeStyle = A + alpha.toFixed(3) + ')';
+      ctx.lineWidth = i === 1 ? 1.4 : 0.8;
+      if (i <= 2) { ctx.shadowColor = 'rgba(200,245,100,0.3)'; ctx.shadowBlur = 7; }
+      else { ctx.shadowBlur = 0; }
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    }
+
+    // Cardinal + diagonal guidelines
+    ctx.strokeStyle = A + '0.08)';
+    ctx.lineWidth = 0.6;
+    ctx.setLineDash([4, 8]);
+    ctx.beginPath(); ctx.moveTo(cx - maxR, cy); ctx.lineTo(cx + maxR, cy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx, cy - maxR); ctx.lineTo(cx, cy + maxR); ctx.stroke();
+    const d = maxR * 0.72;
+    ctx.strokeStyle = A + '0.05)';
+    ctx.beginPath(); ctx.moveTo(cx - d, cy - d); ctx.lineTo(cx + d, cy + d); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx + d, cy - d); ctx.lineTo(cx - d, cy + d); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Sweep wedge
+    const sweepRad = (sweep * Math.PI) / 180;
+    const wedgeSize = Math.PI * 0.28;
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, maxR, sweepRad - wedgeSize, sweepRad, false);
+    ctx.closePath();
+    const sectorGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, maxR);
+    sectorGrad.addColorStop(0,   A + '0.00)');
+    sectorGrad.addColorStop(0.3, A + '0.05)');
+    sectorGrad.addColorStop(1,   A + '0.00)');
+    ctx.fillStyle = sectorGrad;
+    ctx.fill();
+    ctx.restore();
+
+    // Sweep leading edge line
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + Math.cos(sweepRad) * maxR, cy + Math.sin(sweepRad) * maxR);
+    const lineGrad = ctx.createLinearGradient(cx, cy, cx + Math.cos(sweepRad) * maxR, cy + Math.sin(sweepRad) * maxR);
+    lineGrad.addColorStop(0,   A + '0.00)');
+    lineGrad.addColorStop(0.5, A + '0.30)');
+    lineGrad.addColorStop(1,   A + '0.70)');
+    ctx.strokeStyle = lineGrad;
+    ctx.lineWidth = 1.5;
+    ctx.shadowColor = 'rgba(200,245,100,0.6)';
+    ctx.shadowBlur = 6;
+    ctx.stroke();
+    ctx.restore();
+
+    // Tip dot
+    const tipX = cx + Math.cos(sweepRad) * maxR;
+    const tipY = cy + Math.sin(sweepRad) * maxR;
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(tipX, tipY, 2.5, 0, Math.PI * 2);
+    ctx.fillStyle = A + '0.9)';
+    ctx.shadowColor = 'rgba(200,245,100,1)';
+    ctx.shadowBlur = 10;
+    ctx.fill();
+    ctx.restore();
+
+    // Pulsing blips
+    for (const b of BLIPS) {
+      const r = (maxR / RINGS) * b.ring;
+      const bx = cx + Math.cos(b.angle) * r;
+      const by = cy + Math.sin(b.angle) * r;
+      const ping = Math.pow((Math.sin(t * 1.6 + b.phase) + 1) / 2, 4);
+      if (ping < 0.04) continue;
+      ctx.beginPath();
+      ctx.arc(bx, by, 3 + ping * 10, 0, Math.PI * 2);
+      ctx.strokeStyle = A + (ping * 0.3).toFixed(3) + ')';
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(bx, by, 2, 0, Math.PI * 2);
+      ctx.fillStyle = A + (0.5 + ping * 0.5).toFixed(3) + ')';
+      ctx.shadowColor = 'rgba(200,245,100,0.9)';
+      ctx.shadowBlur = 10 * ping;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+
+    sweep = (sweep + 0.5) % 360;
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
 </script>
 
-    
+<script>
+  function highlightFromAnchor() {
+    const id = window.location.hash.slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.add('highlight-target');
+    const top = el.getBoundingClientRect().top + window.pageYOffset;
+    window.scrollTo({ top: top - window.innerHeight / 2 + el.offsetHeight / 2, behavior: 'smooth' });
+    setTimeout(() => el.classList.remove('highlight-target'), 3000);
+  }
+  document.addEventListener('DOMContentLoaded', highlightFromAnchor);
+  window.addEventListener('hashchange', highlightFromAnchor);
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        const top = target.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: top - window.innerHeight / 2 + target.offsetHeight / 2, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
